@@ -1,5 +1,3 @@
-
-
 import Product from '#models/product'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -29,7 +27,7 @@ export default class ProductsController {
 
       const product = await Product.create({
         ...data,
-        images: JSON.stringify(imageNames), //  FIXED
+        images: imageNames,
       })
 
       return response.ok({

@@ -9,7 +9,7 @@ export default defineConfig({
       client: 'pg',
       connection: {
         host: env.get('PG_HOST'),
-        port: env.get('PG_PORT'),
+        port: Number(env.get('PG_PORT')),
         user: env.get('PG_USER'),
         password: env.get('PG_PASSWORD'),
         database: env.get('PG_DB_NAME'),
