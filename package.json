@@ -8,14 +8,19 @@
     "./data": "./.adonisjs/client/data.d.ts",
     "./registry": "./.adonisjs/client/registry/index.ts"
   },
-  "scripts": {
-    "start": "node bin/server.js",
+ "scripts": {
     "build": "node ace build",
-    "dev": "node ace serve --hmr",
+    "start": "node build/ace.js",
+    "dev": "node ace serve --watch",
     "test": "node ace test",
     "lint": "eslint .",
+    "seed": "node ace db:seed",
+    "migrate": "node ace migration:run",
+    "migrate:fresh": "node ace migration:fresh",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "deploy:setup": "ts-node scripts/deploy-setup.ts",
+    "render-build": "npm run build && npm run deploy:setup"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",

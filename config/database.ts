@@ -1,19 +1,26 @@
 import env from '#start/env'
 import { defineConfig } from '@adonisjs/lucid'
 
-export default defineConfig({
-  connection: 'pg',
-
+const dbConfig = defineConfig({
+  connection: 'postgres',
   connections: {
-    pg: {
+    postgres: {
       client: 'pg',
       connection: {
-        host: env.get('PG_HOST'),
-        port: Number(env.get('PG_PORT')),
-        user: env.get('PG_USER'),
-        password: env.get('PG_PASSWORD'),
-        database: env.get('PG_DB_NAME'),
+        host: env.get('DB_HOST'),
+        port: Number(env.get('DB_PORT', '5432')),
+        user: env.get('DB_USER'),
+        password: env.get('DB_PASSWORD'),
+        database: env.get('DB_DATABASE'),
+        ssl: env.get('DB_SSL', true) ? { rejectUnauthorized: false } : false, // For production, it's recommended to use SSL with proper certificates. The above configuration allows self-signed certificates for development purposes.
       },
+      migrations: {
+        naturalSort: true,
+        paths: ['database/migrations'],
+      },
+      debug: false,
     },
   },
 })
+
+export default dbConfig

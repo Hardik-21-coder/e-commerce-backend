@@ -7,17 +7,6 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
-export class AdminSchema extends BaseModel {
-  static $columns = ['id', 'password', 'username'] as const
-  $columns = AdminSchema.$columns
-  @column({ isPrimary: true })
-  declare id: number
-  @column({ serializeAs: null })
-  declare password: string
-  @column()
-  declare username: string
-}
-
 export class AuthAccessTokenSchema extends BaseModel {
   static $columns = ['abilities', 'createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
   $columns = AuthAccessTokenSchema.$columns
@@ -76,7 +65,7 @@ export class UserSchema extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
   @column()
-  declare name: string
+  declare name: string | null
   @column({ serializeAs: null })
   declare password: string
   @column()
