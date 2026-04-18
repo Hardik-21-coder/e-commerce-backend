@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "node ace build",
-    "start": "node build/bin/server.js",
+    "start": "node build/ace.js",
     "dev": "node ace serve --watch",
     "test": "node ace test",
     "lint": "eslint .",
@@ -18,7 +18,9 @@
     "migrate": "node ace migration:run",
     "migrate:fresh": "node ace migration:fresh",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "deploy:setup": "ts-node scripts/deploy-setup.ts",
+    "render-build": "npm run build && npm run deploy:setup"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
